@@ -1,13 +1,11 @@
 # codewindow Extension For Quarto
 
-_TODO_: Add a short description of your extension.
+Add styled codeblock windows for code.
 
 ## Installing
 
-_TODO_: Replace the `<github-organization>` with your GitHub organization.
-
 ```bash
-quarto add <github-organization>/quarto-revealjs-codewindow
+quarto add emilhvitfeldt/quarto-revealjs-codewindow
 ```
 
 This will install the extension under the `_extensions` subdirectory.
@@ -15,7 +13,11 @@ If you're using version control, you will want to check in this directory.
 
 ## Using
 
-_TODO_: Describe how to use your extension.
+Adding a `::: {.codewindow}` fenced div around any code chunk will turn the output into a `codewindow`. The file tab is enabled by adding plain text before the code chunk.
+
+Adding the one of the following classes adds an icon in the file tab. File an issue to have more icons added to this list
+
+- `.sass`
 
 ## Example
 
