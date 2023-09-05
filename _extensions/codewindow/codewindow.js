@@ -24,12 +24,16 @@ const initCodewindow = function(Reveal) {
 
     var content;
     var new_content;
+    var empty_file;
 
     // Remove configured margin of the presentation
     var codewindows = document.getElementsByClassName("codewindow");
   
     for (var i = 0; i < codewindows.length; i++) {
       content = codewindows[i];
+      
+      empty_file = true;
+      
       new_content = document.createElement("div");
       new_content.classList.add("codewindow");
       
@@ -41,15 +45,23 @@ const initCodewindow = function(Reveal) {
       file.classList.add("file");
       if (content.classList.contains("sass")) {
         file.innerHTML += svg_sass;
+        empty_file = false;
       }
       
-      file.innerHTML += "styles.scss";
+      file_name = content.querySelector("p");
+      if (file_name !== null) {
+        file.innerHTML += file_name.innerText;
+        empty_file = false;
+      }
       
       textarea = document.createElement("div");
       textarea.classList.add("textarea");
       textarea.appendChild(content.querySelector("div"));
       
-      header.appendChild(file);
+      if (!empty_file) {
+        header.appendChild(file);
+      }
+
       new_content.appendChild(header);
       new_content.appendChild(textarea);
       

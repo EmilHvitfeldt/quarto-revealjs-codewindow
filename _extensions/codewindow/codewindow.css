@@ -17,12 +17,13 @@
   border-top-right-radius: 10px;
   padding-left: 16px;
   gap: 16px;
+  height: 30px;
 }
 
 .codewindow .header .file {
   margin-top: 5px;
-  padding-left: 16px;
-  padding-right: 25px;
+  padding-left: 20px;
+  padding-right: 20px;
   display: flex;
   background: white;
   border-top-left-radius: 10px;
