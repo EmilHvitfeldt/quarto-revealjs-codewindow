@@ -1,16 +1,33 @@
 ---
 title: "codewindow Example"
 format:
-  revealjs: default
+  revealjs: 
+    footer: <https://github.com/emilhvitfeldt/quarto-revealjs-codewindow>
 revealjs-plugins:
   - codewindow
 echo: true
 code-line-numbers: false
+knitr: true
 ---
 
-## In the morning
+## Basic usage
+
+Everything starts with wrapping a codeblock with `.codewindow` fenced div. So
+
+````` markdown
+::: {.codewindow}
+```{{scss}}
+.pink {
+  color: pink;
+}
+```
+:::
+`````
+
+becomes
 
 ::: {.codewindow}
+
 ```{scss}
 .pink {
   color: pink;
@@ -18,9 +35,51 @@ code-line-numbers: false
 ```
 :::
 
-my friend
+## file name on file tab
+
+THe file name can be specified by writing the name as plain text inside the `codewindow` div. So
+
+````` markdown
+::: {.codewindow}
+styles.scss
+```{{scss}}
+.pink {
+  color: pink;
+}
+```
+:::
+`````
+
+becomes
+
+::: {.codewindow}
+styles.scss
+```{scss}
+.pink {
+  color: pink;
+}
+```
+:::
+
+## File icon
+
+Adding a css class to the `.codewindow` div will add icon if supported. so 
+
+````` markdown
+::: {.codewindow .sass}
+styles.scss
+```{{scss}}
+.pink {
+  color: pink;
+}
+```
+:::
+`````
+
+becomes
 
 ::: {.codewindow .sass}
+styles.scss
 ```{scss}
 .pink {
   color: pink;
@@ -28,7 +87,25 @@ my friend
 ```
 :::
 
-::: {.codewindow width="50%"}
+## Setting width
+
+The `width` argument is natively supported, so the width can be set like so:
+
+````` markdown
+::: {.codewindow .sass width="350px"}
+styles.scss
+```{{scss}}
+.pink {
+  color: pink;
+}
+```
+:::
+`````
+
+becomes
+
+::: {.codewindow .sass width="350px"}
+styles.scss
 ```{scss}
 .pink {
   color: pink;
@@ -36,30 +113,37 @@ my friend
 ```
 :::
 
+## Additional notes
 
-## Getting up
+These divs should work like any other divs. So you can pass in other styles with `styles=""` and use [absolute position](https://quarto.org/docs/presentations/revealjs/advanced.html#absolute-position)
 
-- Turn off alarm
-- Get out of bed
+See next slide for examples
 
-## Breakfast
+## Additional notes
 
-- Eat eggs
-- Drink coffee
-
-# In the evening
-
-## Dinner
-
-- Eat spaghetti
-- Drink wine
-
-## Going to sleep
-
-- Get in bed
-- Count sheep
-
-```{r}
-1 + 1
+::: {.codewindow .sass .absolute top="70%" left="35%" width="350px"}
+styles.scss
+```{scss}
+.pink {
+  color: pink;
+}
 ```
+:::
 
+::: {.codewindow .sass .absolute top="35%" left="10%" width="350px" style="transform: rotate(-15deg);"}
+styles.scss
+```{scss}
+.yellow {
+  color: yellow;
+}
+```
+:::
+
+::: {.codewindow .sass .absolute top="35%" left="60%" width="350px" style="transform: rotate(15deg);"}
+styles.scss
+```{scss}
+.blue {
+  color: blue;
+}
+```
+:::
