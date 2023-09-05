@@ -87,6 +87,60 @@ styles.scss
 ```
 :::
 
+## File icons
+
+::: columns
+::: {.column width="50%"}
+
+::: {.codewindow .r}
+script.R
+```{sass}
+```
+:::
+
+::: {.codewindow .python}
+script.py
+```{sass}
+```
+:::
+
+::: {.codewindow .js}
+script.js
+```{sass}
+```
+:::
+
+:::
+
+::: {.column width="50%"}
+
+::: {.codewindow .quarto}
+index.qmd
+```{sass}
+```
+:::
+
+::: {.codewindow .html}
+index.html
+```{sass}
+```
+:::
+
+::: {.codewindow .css}
+styles.css
+```{sass}
+```
+:::
+
+::: {.codewindow .sass}
+styles.sass
+```{sass}
+```
+:::
+
+:::
+:::
+
 ## Setting width
 
 The `width` argument is natively supported, so the width can be set like so:
