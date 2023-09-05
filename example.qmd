@@ -1,0 +1,65 @@
+---
+title: "codewindow Example"
+format:
+  revealjs: default
+revealjs-plugins:
+  - codewindow
+echo: true
+code-line-numbers: false
+---
+
+## In the morning
+
+::: {.codewindow}
+```{scss}
+.pink {
+  color: pink;
+}
+```
+:::
+
+my friend
+
+::: {.codewindow .sass}
+```{scss}
+.pink {
+  color: pink;
+}
+```
+:::
+
+::: {.codewindow width="50%"}
+```{scss}
+.pink {
+  color: pink;
+}
+```
+:::
+
+
+## Getting up
+
+- Turn off alarm
+- Get out of bed
+
+## Breakfast
+
+- Eat eggs
+- Drink coffee
+
+# In the evening
+
+## Dinner
+
+- Eat spaghetti
+- Drink wine
+
+## Going to sleep
+
+- Get in bed
+- Count sheep
+
+```{r}
+1 + 1
+```
+
