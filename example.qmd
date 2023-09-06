@@ -110,6 +110,12 @@ script.js
 ```
 :::
 
+::: {.codewindow .julia}
+script.jl
+```{sass}
+```
+:::
+
 :::
 
 ::: {.column width="50%"}

@@ -2,6 +2,8 @@
 
 Add styled codeblock windows for code.
 
+![](example.gif)
+
 ## Installing
 
 ```bash
@@ -10,6 +12,17 @@ quarto add emilhvitfeldt/quarto-revealjs-codewindow
 
 This will install the extension under the `_extensions` subdirectory.
 If you're using version control, you will want to check in this directory.
+
+Once an extension has been added, you can use the Reveal plugin by adding it to the `reveal-plugins` key. For example:
+
+````` markdown
+---
+title: "My Presentation"
+format: revealjs
+revealjs-plugins:
+  - codewindow
+---
+`````
 
 ## Using
 
@@ -24,6 +37,7 @@ Adding the one of the following classes adds an icon in the file tab. File an is
 - `.html`
 - `.css`
 - `.sass`
+- `.julia`
 
 The `width` argument can be used directly in the code fence.
 
