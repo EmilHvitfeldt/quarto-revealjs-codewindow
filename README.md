@@ -2,6 +2,8 @@
 
 Add styled codeblock windows for code.
 
+![](example.gif)
+
 ## Installing
 
 ```bash
