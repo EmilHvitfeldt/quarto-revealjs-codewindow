@@ -13,7 +13,7 @@ quarto add emilhvitfeldt/quarto-revealjs-codewindow
 This will install the extension under the `_extensions` subdirectory.
 If you're using version control, you will want to check in this directory.
 
-Once an extension has been added, you can use the Reveal plugin by adding it to the 1reveal-plugins` key. For example:
+Once an extension has been added, you can use the Reveal plugin by adding it to the `reveal-plugins` key. For example:
 
 ````` markdown
 ---
