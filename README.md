@@ -13,6 +13,17 @@ quarto add emilhvitfeldt/quarto-revealjs-codewindow
 This will install the extension under the `_extensions` subdirectory.
 If you're using version control, you will want to check in this directory.
 
+Once an extension has been added, you can use the Reveal plugin by adding it to the 1reveal-plugins` key. For example:
+
+````` markdown
+---
+title: "My Presentation"
+format: revealjs
+revealjs-plugins:
+  - codewindow
+---
+`````
+
 ## Using
 
 Adding a `::: {.codewindow}` fenced div around any code chunk will turn the output into a `codewindow`. The file tab is enabled by adding plain text before the code chunk.
