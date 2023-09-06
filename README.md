@@ -37,6 +37,7 @@ Adding the one of the following classes adds an icon in the file tab. File an is
 - `.html`
 - `.css`
 - `.sass`
+- `.julia`
 
 The `width` argument can be used directly in the code fence.
 

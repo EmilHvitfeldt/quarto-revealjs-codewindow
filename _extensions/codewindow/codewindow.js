@@ -26,6 +26,8 @@ const initCodewindow = function(Reveal) {
   
   const svg_quarto = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 121.8 118.8" xml:space="preserve" style="height:1em"><path d="M56 54.4V1.5C27.9 3.5 5.6 26.2 4.1 54.4H56zm7 0h52.9C114.4 25.9 91.5 3 63 1.5v52.9zm-7 7H4.2c2 27.7 24.1 49.9 51.8 51.8V61.4zm7 0v51.9c28.2-1.5 50.9-23.8 52.8-51.9H63z" fill-rule="evenodd" clip-rule="evenodd" fill="#74AADB"/></svg>`
   
+  const svg_julia = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 325 300" style="height:1em"><path style="stroke:none;fill-rule:nonzero;fill:#cb3c33;fill-opacity:1" d="M150.898 225c0 41.422-33.578 75-75 75-41.421 0-75-33.578-75-75s33.579-75 75-75c41.422 0 75 33.578 75 75"/><path style="stroke:none;fill-rule:nonzero;fill:#389826;fill-opacity:1" d="M237.5 75c0 41.422-33.578 75-75 75s-75-33.578-75-75 33.578-75 75-75 75 33.578 75 75"/><path style="stroke:none;fill-rule:nonzero;fill:#9558b2;fill-opacity:1" d="M324.102 225c0 41.422-33.579 75-75 75-41.422 0-75-33.578-75-75s33.578-75 75-75c41.421 0 75 33.578 75 75"/></svg>`
+  
   window.addEventListener( 'ready', function(event) {
 
     var content;
@@ -76,6 +78,10 @@ const initCodewindow = function(Reveal) {
       }
       if (content.classList.contains("quarto")) {
         file.innerHTML += svg_quarto;
+        empty_file = false;
+      }
+      if (content.classList.contains("julia")) {
+        file.innerHTML += svg_julia;
         empty_file = false;
       }
       
