@@ -93,7 +93,7 @@ const initCodewindow = function(Reveal) {
       
       textarea = document.createElement("div");
       textarea.classList.add("textarea");
-      textarea.appendChild(content.querySelector("div"));
+      textarea.appendChild(content.querySelector("div,iframe"));
       
       if (!empty_file) {
         header.appendChild(file);
