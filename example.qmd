@@ -116,6 +116,12 @@ script.jl
 ```
 :::
 
+::: {.codewindow .terminal}
+script.sh
+```{sass}
+```
+:::
+
 :::
 
 ::: {.column width="50%"}
@@ -140,6 +146,12 @@ styles.css
 
 ::: {.codewindow .sass}
 styles.sass
+```{sass}
+```
+:::
+
+::: {.codewindow .nextflow}
+main.nf
 ```{sass}
 ```
 :::
