@@ -1,0 +1,221 @@
+---
+title: "codewindow Example"
+format:
+  revealjs: 
+    footer: <https://github.com/emilhvitfeldt/quarto-revealjs-codewindow>
+revealjs-plugins:
+  - codewindow
+echo: true
+code-line-numbers: false
+knitr: true
+---
+
+## Basic usage
+
+Everything starts with wrapping a codeblock with `.codewindow` fenced div. So
+
+````` markdown
+::: {.codewindow}
+```{{scss}}
+.pink {
+  color: pink;
+}
+```
+:::
+`````
+
+becomes
+
+::: {.codewindow}
+
+```{scss}
+.pink {
+  color: pink;
+}
+```
+:::
+
+## file name on file tab
+
+THe file name can be specified by writing the name as plain text inside the `codewindow` div. So
+
+````` markdown
+::: {.codewindow}
+styles.scss
+```{{scss}}
+.pink {
+  color: pink;
+}
+```
+:::
+`````
+
+becomes
+
+::: {.codewindow}
+styles.scss
+```{scss}
+.pink {
+  color: pink;
+}
+```
+:::
+
+## File icon
+
+Adding a css class to the `.codewindow` div will add icon if supported. so 
+
+````` markdown
+::: {.codewindow .sass}
+styles.scss
+```{{scss}}
+.pink {
+  color: pink;
+}
+```
+:::
+`````
+
+becomes
+
+::: {.codewindow .sass}
+styles.scss
+```{scss}
+.pink {
+  color: pink;
+}
+```
+:::
+
+## File icons
+
+::: columns
+::: {.column width="50%"}
+
+::: {.codewindow .r}
+script.R
+```{sass}
+```
+:::
+
+::: {.codewindow .python}
+script.py
+```{sass}
+```
+:::
+
+::: {.codewindow .js}
+script.js
+```{sass}
+```
+:::
+
+::: {.codewindow .julia}
+script.jl
+```{sass}
+```
+:::
+
+::: {.codewindow .terminal}
+script.sh
+```{sass}
+```
+:::
+
+:::
+
+::: {.column width="50%"}
+
+::: {.codewindow .quarto}
+index.qmd
+```{sass}
+```
+:::
+
+::: {.codewindow .html}
+index.html
+```{sass}
+```
+:::
+
+::: {.codewindow .css}
+styles.css
+```{sass}
+```
+:::
+
+::: {.codewindow .sass}
+styles.sass
+```{sass}
+```
+:::
+
+::: {.codewindow .nextflow}
+main.nf
+```{sass}
+```
+:::
+
+:::
+:::
+
+## Setting width
+
+The `width` argument is natively supported, so the width can be set like so:
+
+````` markdown
+::: {.codewindow .sass width="350px"}
+styles.scss
+```{{scss}}
+.pink {
+  color: pink;
+}
+```
+:::
+`````
+
+becomes
+
+::: {.codewindow .sass width="350px"}
+styles.scss
+```{scss}
+.pink {
+  color: pink;
+}
+```
+:::
+
+## Additional notes
+
+These divs should work like any other divs. So you can pass in other styles with `styles=""` and use [absolute position](https://quarto.org/docs/presentations/revealjs/advanced.html#absolute-position)
+
+See next slide for examples
+
+## Additional notes
+
+::: {.codewindow .sass .absolute top="70%" left="35%" width="350px"}
+styles.scss
+```{scss}
+.pink {
+  color: pink;
+}
+```
+:::
+
+::: {.codewindow .sass .absolute top="35%" left="10%" width="350px" style="transform: rotate(-15deg);"}
+styles.scss
+```{scss}
+.yellow {
+  color: yellow;
+}
+```
+:::
+
+::: {.codewindow .sass .absolute top="35%" left="60%" width="350px" style="transform: rotate(15deg);"}
+styles.scss
+```{scss}
+.blue {
+  color: blue;
+}
+```
+:::
