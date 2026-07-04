@@ -12,6 +12,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Fixed
 
+- Codewindows no longer silently drop everything after the first code block. All block-level content (multiple code blocks, text, etc.) is now kept, removing the need to wrap extra content in a fenced div (#5).
 - README icon list now matches the classes the plugin actually supports (documents `.python`, adds the previously undocumented `.terminal` and `.nextflow`).
 
 ## 1.4.0

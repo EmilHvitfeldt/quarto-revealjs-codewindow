@@ -102,10 +102,17 @@ const initCodewindow = function(Reveal) {
         file.innerHTML += file_name.innerText;
         empty_file = false;
       }
-      
+
       textarea = document.createElement("div");
       textarea.classList.add("textarea");
-      textarea.appendChild(content.querySelector("div,iframe"));
+      // Move every child into the window, skipping the filename paragraph.
+      // Iterate over a static copy since appendChild mutates content's children.
+      Array.from(content.childNodes).forEach(function(node) {
+        if (node === file_name) {
+          return;
+        }
+        textarea.appendChild(node);
+      });
       
       if (!empty_file) {
         header.appendChild(file);

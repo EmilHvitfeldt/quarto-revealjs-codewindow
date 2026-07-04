@@ -185,6 +185,42 @@ styles.scss
 ```
 :::
 
+## Multiple blocks in one window
+
+A codewindow can hold more than one code block (and text between them); nothing gets dropped. So
+
+````` markdown
+::: {.codewindow .r}
+my-script.R
+```{{r}}
+runif(1)
+```
+
+Then some more code:
+
+```{{r}}
+runif(42)
+```
+:::
+`````
+
+## Multiple blocks in one window
+
+becomes
+
+::: {.codewindow .r}
+my-script.R
+```{r}
+runif(1)
+```
+
+Then some more code:
+
+```{r}
+runif(42)
+```
+:::
+
 ## Additional notes
 
 These divs should work like any other divs. So you can pass in other styles with `styles=""` and use [absolute position](https://quarto.org/docs/presentations/revealjs/advanced.html#absolute-position)
