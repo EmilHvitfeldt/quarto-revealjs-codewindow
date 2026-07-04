@@ -64,7 +64,7 @@ const initCodewindow = function(Reveal) {
         file.innerHTML += svg_r;
         empty_file = false;
       }
-      if (content.classList.contains("python")) {
+      if (content.classList.contains("python") || content.classList.contains("py")) {
         file.innerHTML += svg_python;
         empty_file = false;
       }
