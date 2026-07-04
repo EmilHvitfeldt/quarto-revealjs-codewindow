@@ -43,6 +43,30 @@ Adding the one of the following classes adds an icon in the file tab. File an is
 
 The `width` argument can be used directly in the code fence.
 
+## Multiple tabs
+
+A single `codewindow` can show several file tabs. Wrap one or more `.editor` divs inside the `.codewindow` div, one per tab. Each `.editor` takes the same language classes for its icon and either a `name="..."` attribute or leading plain text for its filename.
+
+- The first tab is shown by default. Add `.active` to a different `.editor` to start on that one instead.
+- Add `.fragment` to an `.editor` to focus its tab as the slide advances (and step back when reversing).
+
+````` markdown
+:::: {.codewindow}
+::: {.editor .r name="00-load.R"}
+```r
+data <- read.csv("my-data.csv")
+```
+:::
+
+::: {.editor .r .fragment name="01-clean.R"}
+```r
+library(dplyr)
+data <- filter(data, x > 0)
+```
+:::
+::::
+`````
+
 ## Example
 
 Here is the source code for a minimal example: [example.qmd](example.qmd).

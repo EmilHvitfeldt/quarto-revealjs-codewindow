@@ -46,3 +46,40 @@
 .codewindow .textarea pre {
   font-size: unset;
 }
+
+/* Multiple tabs */
+
+.codewindow .header .tabs {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  height: 100%;
+}
+
+.codewindow .header .tabs .file {
+  margin-top: 0;
+  background: #cbd5e1;
+  opacity: 0.6;
+}
+
+.codewindow .header .tabs .file.active {
+  background: white;
+  opacity: 1;
+}
+
+.codewindow .textarea .pane {
+  display: none;
+}
+
+.codewindow .textarea .pane.active {
+  display: block;
+}
+
+.codewindow .cw-fragment-trigger {
+  position: absolute;
+  width: 0;
+  height: 0;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}

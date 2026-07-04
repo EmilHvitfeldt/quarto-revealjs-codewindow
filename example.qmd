@@ -221,6 +221,54 @@ runif(42)
 ```
 :::
 
+## Multiple tabs
+
+Wrap several `.editor` divs in a `.codewindow` to get one file tab per editor. Add `.active` to pick which starts open (the first otherwise), and `.fragment` to focus the next tab as the slide advances.
+
+````` markdown
+:::: {.codewindow}
+::: {.editor .r name="00-load.R"}
+```r
+data <- read.csv("my-data.csv")
+```
+:::
+
+::: {.editor .r .fragment name="01-clean.R"}
+```r
+library(dplyr)
+data <- filter(data, x > 0)
+```
+:::
+::::
+`````
+
+## Multiple tabs
+
+becomes (advance the slide to switch tabs)
+
+:::: {.codewindow}
+::: {.editor .r name="00-load.R"}
+```r
+data <- read.csv("my-data.csv")
+```
+:::
+
+::: {.editor .r .fragment name="01-clean.R"}
+```r
+library(dplyr)
+data <- filter(data, x > 0)
+```
+:::
+
+::: {.editor .r .fragment name="02-plot.R"}
+```r
+library(ggplot2)
+ggplot(data, aes(x, y)) +
+  geom_point()
+```
+:::
+::::
+
 ## Additional notes
 
 These divs should work like any other divs. So you can pass in other styles with `styles=""` and use [absolute position](https://quarto.org/docs/presentations/revealjs/advanced.html#absolute-position)

@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Added
 
+- Multiple file tabs in a single codewindow via `.editor` divs. Choose the starting tab with `.active`, and use `.fragment` to focus the next tab as the slide advances (#4).
 - The `.py` class is now accepted as an alias for `.python`, matching the README.
 
 ### Fixed

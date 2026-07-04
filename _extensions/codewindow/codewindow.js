@@ -31,101 +31,196 @@ const initCodewindow = function(Reveal) {
   const svg_terminal = `<svg width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="8" width="40" height="32" rx="2" fill="#ff7043" stroke="#333" stroke-width="4" stroke-linejoin="round"/><path d="M12 18L19 24L12 30" stroke="#333" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M23 32H36" stroke="#333" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>`
 
   const svg_nextflow = `<svg  width="24" height="24" viewBox="0 0 251 251" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 47.0195C39.45 49.6394 71.06 81.3272 73.54 120.815H119.61C117.05 55.8589 64.93 3.64245 0 0.942627V47.0195Z" fill="#0DC09D"/><path d="M73.8 131.324C71.18 170.771 39.49 202.379 0 204.859V250.926C64.96 248.366 117.18 196.249 119.88 131.324H73.8Z" fill="#0DC09D"/><path d="M176.201 120.545C178.821 81.0972 210.511 49.4894 250.001 47.0095V0.942627C185.041 3.50245 132.821 55.619 130.121 120.545H176.201Z" fill="#0DC09D"/><path d="M250.001 204.849C210.551 202.229 178.941 170.542 176.461 131.054H130.391C132.951 196.01 185.071 248.226 250.001 250.926V204.849Z" fill="#0DC09D"/></svg>`
-    
+
+  // Map of language class -> icon markup. `py` is an alias for `python`.
+  const icons = {
+    sass: svg_sass,
+    r: svg_r,
+    python: svg_python,
+    py: svg_python,
+    html: svg_html,
+    css: svg_css,
+    js: svg_js,
+    quarto: svg_quarto,
+    julia: svg_julia,
+    terminal: svg_terminal,
+    nextflow: svg_nextflow
+  };
+
+  // Concatenated icon markup for whatever language classes `el` carries.
+  const iconMarkup = function(el) {
+    var markup = "";
+    var seen = {};
+    el.classList.forEach(function(cls) {
+      var svg = icons[cls];
+      if (svg && !seen[svg]) {
+        markup += svg;
+        seen[svg] = true;
+      }
+    });
+    return markup;
+  };
+
+  // Build a file tab (icon + name) for `el`. Returns { file, name_p } where
+  // `file` is null when there is neither an icon nor a name to show.
+  const buildFileTab = function(el) {
+    var file = document.createElement("div");
+    file.classList.add("file");
+    var empty = true;
+
+    var markup = iconMarkup(el);
+    if (markup) {
+      file.innerHTML += markup;
+      empty = false;
+    }
+
+    // Name: the `name` attribute wins, otherwise the first paragraph.
+    var name = el.getAttribute("name");
+    var name_p = el.querySelector("p");
+    if (name === null && name_p !== null) {
+      name = name_p.innerText;
+    }
+    if (name) {
+      file.appendChild(document.createTextNode(name));
+      empty = false;
+    }
+
+    return { file: empty ? null : file, name_p: name_p };
+  };
+
+  // Move every child of `src` into `dest`, skipping the filename paragraph.
+  // Iterate over a static copy since appendChild mutates src's children.
+  const moveContent = function(src, dest, skip) {
+    Array.from(src.childNodes).forEach(function(node) {
+      if (node === skip) {
+        return;
+      }
+      dest.appendChild(node);
+    });
+  };
+
+  // Show tab/pane `idx` in `win`, hiding the others.
+  const activate = function(win, idx) {
+    var tabs = win.querySelectorAll(":scope > .header .tabs .file");
+    var panes = win.querySelectorAll(":scope > .textarea .pane");
+    tabs.forEach(function(t, i) { t.classList.toggle("active", i === idx); });
+    panes.forEach(function(p, i) { p.classList.toggle("active", i === idx); });
+  };
+
   window.addEventListener( 'ready', function(event) {
 
-    var content;
-    var new_content;
-    var empty_file;
-
-    // Remove configured margin of the presentation
+    var needsSync = false;
     var codewindows = document.getElementsByClassName("codewindow");
-  
+
     for (var i = 0; i < codewindows.length; i++) {
-      content = codewindows[i];
-      
-      empty_file = true;
-      
-      new_content = document.createElement("div");
+      var content = codewindows[i];
+      var editors = content.querySelectorAll(":scope > .editor");
+
+      var new_content = document.createElement("div");
       new_content.classList.add("codewindow");
-      
-      header = document.createElement("div");
+
+      var header = document.createElement("div");
       header.classList.add("header");
       header.innerHTML = svg_buttons;
-      
-      file = document.createElement("div");
-      
-      file.classList.add("file");
-      if (content.classList.contains("sass")) {
-        file.innerHTML += svg_sass;
-        empty_file = false;
-      }
-      if (content.classList.contains("r")) {
-        file.innerHTML += svg_r;
-        empty_file = false;
-      }
-      if (content.classList.contains("python") || content.classList.contains("py")) {
-        file.innerHTML += svg_python;
-        empty_file = false;
-      }
-      if (content.classList.contains("html")) {
-        file.innerHTML += svg_html;
-        empty_file = false;
-      }
-      if (content.classList.contains("css")) {
-        file.innerHTML += svg_css;
-        empty_file = false;
-      }
-      if (content.classList.contains("js")) {
-        file.innerHTML += svg_js;
-        empty_file = false;
-      }
-      if (content.classList.contains("quarto")) {
-        file.innerHTML += svg_quarto;
-        empty_file = false;
-      }
-      if (content.classList.contains("julia")) {
-        file.innerHTML += svg_julia;
-        empty_file = false;
-      }
-      if (content.classList.contains("terminal")) {
-        file.innerHTML += svg_terminal;
-        empty_file = false;
-      }
-      if (content.classList.contains("nextflow")) {
-        file.innerHTML += svg_nextflow;
-        empty_file = false;
-      }    
-      
-      file_name = content.querySelector("p");
-      if (file_name !== null) {
-        file.innerHTML += file_name.innerText;
-        empty_file = false;
-      }
 
-      textarea = document.createElement("div");
+      var textarea = document.createElement("div");
       textarea.classList.add("textarea");
-      // Move every child into the window, skipping the filename paragraph.
-      // Iterate over a static copy since appendChild mutates content's children.
-      Array.from(content.childNodes).forEach(function(node) {
-        if (node === file_name) {
-          return;
+
+      if (editors.length > 0) {
+        // Multi-tab window: one tab + pane per `.editor` child.
+        var tabs = document.createElement("div");
+        tabs.classList.add("tabs");
+
+        // Default active tab: the `.active` editor, otherwise the first.
+        var activeIndex = 0;
+        editors.forEach(function(ed, idx) {
+          if (ed.classList.contains("active")) {
+            activeIndex = idx;
+          }
+        });
+
+        var triggers = [];
+        var prev = activeIndex;
+
+        editors.forEach(function(ed, idx) {
+          var built = buildFileTab(ed);
+          var tab = built.file || document.createElement("div");
+          tab.classList.add("file");
+          if (idx === activeIndex) {
+            tab.classList.add("active");
+          }
+          tabs.appendChild(tab);
+
+          var pane = document.createElement("div");
+          pane.classList.add("pane");
+          if (idx === activeIndex) {
+            pane.classList.add("active");
+          }
+          moveContent(ed, pane, built.name_p);
+          textarea.appendChild(pane);
+
+          // A `.fragment` editor becomes a step that is focused on advance.
+          if (ed.classList.contains("fragment")) {
+            triggers.push({ target: idx, prev: prev });
+            prev = idx;
+          }
+        });
+
+        header.appendChild(tabs);
+        new_content.appendChild(header);
+        new_content.appendChild(textarea);
+
+        // Invisible reveal fragments drive the active tab as the slide advances.
+        triggers.forEach(function(t) {
+          var span = document.createElement("span");
+          span.classList.add("fragment", "cw-fragment-trigger");
+          span.dataset.cwTarget = t.target;
+          span.dataset.cwPrev = t.prev;
+          new_content.appendChild(span);
+          needsSync = true;
+        });
+      } else {
+        // Single window (original behaviour).
+        var built = buildFileTab(content);
+        if (built.file) {
+          header.appendChild(built.file);
         }
-        textarea.appendChild(node);
-      });
-      
-      if (!empty_file) {
-        header.appendChild(file);
+        moveContent(content, textarea, built.name_p);
+        new_content.appendChild(header);
+        new_content.appendChild(textarea);
       }
 
-      new_content.appendChild(header);
-      new_content.appendChild(textarea);
-      
-      codewindows[i].innerHTML = new_content.innerHTML;
-      
+      // Insert live nodes (not serialized innerHTML) so fragment triggers keep
+      // their identity and reveal can drive them.
+      content.replaceChildren.apply(content, Array.from(new_content.childNodes));
+
       if (content.attributes.width !== undefined) {
-        codewindows[i].style.width = content.attributes.width.value;
+        content.style.width = content.attributes.width.value;
       }
+    }
+
+    // Fragment-driven tab switching for multi-tab windows.
+    Reveal.on('fragmentshown', function(e) {
+      var el = e.fragment;
+      if (el && el.classList && el.classList.contains("cw-fragment-trigger")) {
+        var win = el.closest(".codewindow");
+        if (win) {
+          activate(win, parseInt(el.dataset.cwTarget, 10));
+        }
+      }
+    });
+    Reveal.on('fragmenthidden', function(e) {
+      var el = e.fragment;
+      if (el && el.classList && el.classList.contains("cw-fragment-trigger")) {
+        var win = el.closest(".codewindow");
+        if (win) {
+          activate(win, parseInt(el.dataset.cwPrev, 10));
+        }
+      }
+    });
+
+    if (needsSync && typeof Reveal.sync === "function") {
+      Reveal.sync();
     }
   });
 };
