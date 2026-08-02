@@ -4,7 +4,7 @@ All notable changes to the codewindow extension are documented here.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased
+## 1.6.0
 
 ### Added
 
@@ -15,6 +15,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - `stan` and `mplus` file icons (#11).
 - 15 new file icons: `sql`, `markdown`, `yaml`, `json`, `git` and `bash` for common formats and tooling; `sas`, `spss`, `stata`, `matlab`, `cpp` and `fortran` for statistical and scientific languages; and `typescript`, `rust` and `go`.
 - Class aliases for existing icons, so the obvious spelling works: `scss`, `md`, `yml`, `qmd`, `jl`, `f90`, `ts`, `javascript`, `golang`, and `sh`/`zsh`/`shell`/`console` for `terminal`.
+
+### Fixed
+
+- `code-line-numbers` highlighting inside a codewindow. Quarto stacks a clone of the code block for each step and relies on an opaque code background to hide the one underneath, which the window unset, so the first step showed through and its lines never dimmed.
 
 ## 1.5.0
 
