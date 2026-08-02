@@ -116,12 +116,6 @@ script.jl
 ```
 :::
 
-::: {.codewindow .terminal}
-script.sh
-```{sass}
-```
-:::
-
 :::
 
 ::: {.column width="50%"}
@@ -150,8 +144,38 @@ styles.sass
 ```
 :::
 
+:::
+:::
+
+## File icons
+
+::: columns
+::: {.column width="50%"}
+
+::: {.codewindow .terminal}
+script.sh
+```{sass}
+```
+:::
+
 ::: {.codewindow .nextflow}
 main.nf
+```{sass}
+```
+:::
+
+:::
+
+::: {.column width="50%"}
+
+::: {.codewindow .stan}
+model.stan
+```{sass}
+```
+:::
+
+::: {.codewindow .mplus}
+model.inp
 ```{sass}
 ```
 :::
@@ -227,7 +251,7 @@ Wrap several `.editor` divs in a `.codewindow` to get one file tab per editor. A
 
 ````` markdown
 :::: {.codewindow}
-::: {.editor .r name="00-load.R"}
+::: {.editor .r name="Final (updated) - USE THIS ONE - .R"}
 ```r
 data <- read.csv("my-data.csv")
 ```
@@ -241,6 +265,24 @@ data <- filter(data, x > 0)
 :::
 ::::
 `````
+
+## Only the best names
+
+:::: {.codewindow}
+::: {.editor .r name="00-load.R"}
+
+```r
+data <- read.csv("my-data.csv")
+```
+:::
+
+::: {.editor .r .fragment name="01-clean.R"}
+```r
+library(dplyr)
+data <- filter(data, x > 0)
+```
+:::
+::::
 
 ## Multiple tabs
 

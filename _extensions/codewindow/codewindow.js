@@ -32,6 +32,12 @@ const initCodewindow = function(Reveal) {
 
   const svg_nextflow = `<svg  width="24" height="24" viewBox="0 0 251 251" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 47.0195C39.45 49.6394 71.06 81.3272 73.54 120.815H119.61C117.05 55.8589 64.93 3.64245 0 0.942627V47.0195Z" fill="#0DC09D"/><path d="M73.8 131.324C71.18 170.771 39.49 202.379 0 204.859V250.926C64.96 248.366 117.18 196.249 119.88 131.324H73.8Z" fill="#0DC09D"/><path d="M176.201 120.545C178.821 81.0972 210.511 49.4894 250.001 47.0095V0.942627C185.041 3.50245 132.821 55.619 130.121 120.545H176.201Z" fill="#0DC09D"/><path d="M250.001 204.849C210.551 202.229 178.941 170.542 176.461 131.054H130.391C132.951 196.01 185.071 248.226 250.001 250.926V204.849Z" fill="#0DC09D"/></svg>`
 
+  const svg_stan = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="205 359 334 334" style="height:1em"><circle cx="372" cy="526" r="166.5" fill="#F2E5BD"/><path fill="#3E8EBC" d="M372.032 359.51c-92.051 0-166.657 74.636-166.657 166.687 0 43.472 16.648 83.049 43.907 112.718 20.201-6.122 40.603-11.817 57.218-16.156 48.062-12.551 130.337-33.765 142.22-60.5-3.343 9.283-14.5 34.156-14.5 34.156-15.225 14.853-84.416 31.327-129.97 40.094-14.532 2.797-31.119 6.03-47.937 9.594 29.975 28.93 70.764 46.75 115.719 46.75 92.05 0 166.687-74.606 166.687-166.656 0-27.328-6.593-53.116-18.25-75.875-30.076 4.852-124.963 22.076-149.281 27.562-26.839 6.055-80.826 17.06-91.594 35.625 6.684-17.08 26.875-61.812 26.875-61.812 14.482-23.765 78.592-40.766 123.313-53.125 10.43-2.883 22.89-6.421 36-10.219-26.71-18.203-58.99-28.844-93.75-28.844z"/><path fill="#052744" d="M279.461 514.126c-2.997 13.986 41.906 27.53 82.392 40.339 40.486 12.809 57.533 19.73 67.465 26.103 16.1-7.7 19.79-19.216 19.79-19.216 4.495-17.731-35.866-40.403-62.78-50.345-26.916-9.942-32.944-14.72-52.466-24.315-51.393 13.602-54.4 27.434-54.4 27.434z"/></svg>`
+
+  // Mplus has no official vector logo; this reproduces the wordmark as it is
+  // set on statmodel.com (bold Arial "M" followed by bold italic Times "plus").
+  const svg_mplus = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 9 256 116" style="height:1em" fill="#330066"><text x="0" y="100" font-size="100" font-weight="bold"><tspan font-family="Arial, Helvetica, sans-serif">M</tspan><tspan font-family="Times, 'Times New Roman', serif" font-style="italic">plus</tspan></text></svg>`
+
   // Map of language class -> icon markup. `py` is an alias for `python`.
   const icons = {
     sass: svg_sass,
@@ -44,7 +50,9 @@ const initCodewindow = function(Reveal) {
     quarto: svg_quarto,
     julia: svg_julia,
     terminal: svg_terminal,
-    nextflow: svg_nextflow
+    nextflow: svg_nextflow,
+    stan: svg_stan,
+    mplus: svg_mplus
   };
 
   // Concatenated icon markup for whatever language classes `el` carries.
