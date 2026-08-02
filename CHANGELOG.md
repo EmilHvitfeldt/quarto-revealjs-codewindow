@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Added
 
+- Color customization (#6). Every color is now backed by a CSS custom property (`--codewindow-bg`, `--codewindow-header-bg`, `--codewindow-tab-bg`, `--codewindow-tab-active-bg`, `--codewindow-color`, `--codewindow-shadow-color`) for deck-wide theming, and can be set per window with the matching `bg`, `header-bg`, `tab-bg`, `tab-active-bg`, `color` and `shadow-color` code fence arguments. A `.codewindow-dark` class gives a dark window, with syntax highlighting remapped to suit.
 - `rmd` file icon, with `rmarkdown` as an alias (#3).
 - `stan` and `mplus` file icons (#11).
 - 15 new file icons: `sql`, `markdown`, `yaml`, `json`, `git` and `bash` for common formats and tooling; `sas`, `spss`, `stata`, `matlab`, `cpp` and `fortran` for statistical and scientific languages; and `typescript`, `rust` and `go`.

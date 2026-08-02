@@ -341,6 +341,56 @@ styles.scss
 ```
 :::
 
+## Setting colors
+
+The colors of a single window can be set with the `bg`, `header-bg`, `tab-bg`, `tab-active-bg`, `color` and `shadow-color` arguments:
+
+````` markdown
+::: {.codewindow .sass bg="#fdf6e3" header-bg="#eee8d5" shadow-color="#93a1a1"}
+styles.scss
+```{{scss}}
+.pink {
+  color: pink;
+}
+```
+:::
+`````
+
+becomes
+
+::: {.codewindow .sass bg="#fdf6e3" header-bg="#eee8d5" shadow-color="#93a1a1"}
+styles.scss
+```{scss}
+.pink {
+  color: pink;
+}
+```
+:::
+
+## Dark windows
+
+The `.codewindow-dark` class is a preset for dark decks:
+
+::: {.codewindow .sass .codewindow-dark}
+styles.scss
+```{scss}
+.pink {
+  color: pink;
+}
+```
+:::
+
+To restyle every window in the deck, set the same custom properties in your own stylesheet:
+
+````` css
+.reveal {
+  --codewindow-bg: #1e293b;
+  --codewindow-header-bg: #0f172a;
+  --codewindow-tab-bg: #334155;
+  --codewindow-color: #e2e8f0;
+}
+`````
+
 ## Multiple blocks in one window
 
 A codewindow can hold more than one code block (and text between them); nothing gets dropped. So

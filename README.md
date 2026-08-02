@@ -72,6 +72,53 @@ General-purpose languages:
 
 The `width` argument can be used directly in the code fence.
 
+## Colors
+
+The colors of a single window can be set with these code fence arguments:
+
+- `bg`: the window background
+- `header-bg`: the header bar behind the file tabs
+- `tab-bg`: inactive file tabs (multi-tab windows)
+- `tab-active-bg`: the active file tab (defaults to `bg`)
+- `color`: plain text inside the window
+- `shadow-color`: the drop shadow
+
+````` markdown
+::: {.codewindow .sass bg="#fdf6e3" header-bg="#eee8d5" shadow-color="#93a1a1"}
+styles.scss
+```{{scss}}
+.pink {
+  color: pink;
+}
+```
+:::
+`````
+
+Adding the `.codewindow-dark` class gives a dark window, with the syntax highlighting remapped to a dark palette:
+
+````` markdown
+::: {.codewindow .sass .codewindow-dark}
+```{{scss}}
+.pink {
+  color: pink;
+}
+```
+:::
+`````
+
+Each argument is backed by a CSS custom property, so all windows in a deck can be restyled at once from your own stylesheet:
+
+````` css
+.reveal {
+  --codewindow-bg: #fdf6e3;
+  --codewindow-header-bg: #eee8d5;
+  --codewindow-tab-bg: #d9d2ba;
+  --codewindow-tab-active-bg: #fdf6e3;
+  --codewindow-color: #073642;
+  --codewindow-shadow-color: #93a1a1;
+}
+`````
+
 ## Multiple tabs
 
 A single `codewindow` can show several file tabs. Wrap one or more `.editor` divs inside the `.codewindow` div, one per tab. Each `.editor` takes the same language classes for its icon and either a `name="..."` attribute or leading plain text for its filename.
