@@ -8,6 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Added
 
+- Window chrome (#10). The `chrome` code fence argument picks the window buttons: `mac` (the default) keeps the three round buttons on the left, `windows` puts minimize, maximize and close on the right, and `none` drops them entirely.
+- Custom properties for the window geometry (`--codewindow-radius`, `--codewindow-header-height`, `--codewindow-header-pad`, `--codewindow-tab-radius`, `--codewindow-tab-gap`, `--codewindow-tab-padding` and `--codewindow-tab-inactive-opacity`), so tab and header shape can be themed the same way the colors already were.
 - Color customization (#6). Every color is now backed by a CSS custom property (`--codewindow-bg`, `--codewindow-header-bg`, `--codewindow-tab-bg`, `--codewindow-tab-active-bg`, `--codewindow-color`, `--codewindow-shadow-color`) for deck-wide theming, and can be set per window with the matching `bg`, `header-bg`, `tab-bg`, `tab-active-bg`, `color` and `shadow-color` code fence arguments. A `.codewindow-dark` class gives a dark window, with syntax highlighting remapped to suit.
 - `rmd` file icon, with `rmarkdown` as an alias (#3).
 - `stan` and `mplus` file icons (#11).
