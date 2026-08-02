@@ -51,6 +51,7 @@ Shells and tooling:
 Statistical and scientific languages:
 
 - `.r`
+- `.rmd` (or `.rmarkdown`)
 - `.python` (or `.py`)
 - `.julia` (or `.jl`)
 - `.stan`
