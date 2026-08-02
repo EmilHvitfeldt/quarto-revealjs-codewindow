@@ -30,18 +30,44 @@ Adding a `::: {.codewindow}` fenced div around any code chunk will turn the outp
 
 Adding the one of the following classes adds an icon in the file tab. File an issue to have more icons added to this list
 
-- `.r`
-- `.python` (or `.py`)
-- `.js`
-- `.quarto`
+Markup, styling and data formats:
+
 - `.html`
 - `.css`
-- `.sass`
-- `.julia`
-- `.terminal`
+- `.sass` (or `.scss`)
+- `.markdown` (or `.md`)
+- `.yaml` (or `.yml`)
+- `.json`
+- `.quarto` (or `.qmd`)
+- `.sql`
+
+Shells and tooling:
+
+- `.terminal` (or `.sh`, `.zsh`, `.shell`, `.console`)
+- `.bash`
+- `.git`
 - `.nextflow`
+
+Statistical and scientific languages:
+
+- `.r`
+- `.python` (or `.py`)
+- `.julia` (or `.jl`)
 - `.stan`
 - `.mplus`
+- `.sas`
+- `.spss`
+- `.stata`
+- `.matlab`
+- `.cpp`
+- `.fortran` (or `.f90`)
+
+General-purpose languages:
+
+- `.js` (or `.javascript`)
+- `.typescript` (or `.ts`)
+- `.rust`
+- `.go` (or `.golang`)
 
 The `width` argument can be used directly in the code fence.
 
