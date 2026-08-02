@@ -24,6 +24,27 @@
   height: var(--codewindow-header-height, 30px);
 }
 
+/* Window buttons. Which set is drawn comes from the `chrome=` fence argument,
+   which the plugin mirrors onto `data-chrome` for the rules below. */
+.codewindow .header .buttons {
+  display: flex;
+  align-items: center;
+  flex: none;
+}
+
+.codewindow[data-chrome="windows"] .header {
+  padding-right: var(--codewindow-header-pad, 16px);
+}
+
+.codewindow[data-chrome="windows"] .header .buttons {
+  order: 2;
+  margin-left: auto;
+}
+
+.codewindow[data-chrome="none"] .header .buttons {
+  display: none;
+}
+
 .codewindow .header .file {
   margin-top: 5px;
   padding-left: var(--codewindow-tab-padding, 20px);
