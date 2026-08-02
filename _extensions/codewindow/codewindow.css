@@ -1,8 +1,8 @@
 /* TODO: CSS for plugin */
 
-/* Colors are read from custom properties so decks can restyle the window
-   without overriding these rules. Set them on `:root`, `.reveal`, a single
-   `.codewindow`, or via the `bg=`/`header-bg=` code fence attributes. */
+/* Colors and geometry are read from custom properties so decks can restyle the
+   window without overriding these rules. Set them on `:root`, `.reveal`, a
+   single `.codewindow`, or via the `bg=`/`header-bg=` code fence attributes. */
 .codewindow {
   overflow-wrap: anywhere;
   margin-bottom: 36px;
@@ -10,28 +10,27 @@
   font-family: monospace;
   color: var(--codewindow-color, inherit);
   background: var(--codewindow-bg, white);
-  border-radius: 10px;
+  border-radius: var(--codewindow-radius, 10px);
   box-shadow: var(--codewindow-shadow-color, #26394d) 0px 20px 30px -10px;
 }
 
 .codewindow .header {
   display: flex;
   background: var(--codewindow-header-bg, #e2e8f0);
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  padding-left: 16px;
+  border-top-left-radius: var(--codewindow-radius, 10px);
+  border-top-right-radius: var(--codewindow-radius, 10px);
+  padding-left: var(--codewindow-header-pad, 16px);
   gap: 16px;
-  height: 30px;
+  height: var(--codewindow-header-height, 30px);
 }
 
 .codewindow .header .file {
   margin-top: 5px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: var(--codewindow-tab-padding, 20px);
+  padding-right: var(--codewindow-tab-padding, 20px);
   display: flex;
   background: var(--codewindow-tab-active-bg, var(--codewindow-bg, white));
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  border-radius: var(--codewindow-tab-radius, 10px 10px 0 0);
   height: 90%;
   align-items: center;
   gap: 4px;
@@ -65,14 +64,14 @@
 .codewindow .header .tabs {
   display: flex;
   align-items: flex-end;
-  gap: 8px;
+  gap: var(--codewindow-tab-gap, 8px);
   height: 100%;
 }
 
 .codewindow .header .tabs .file {
   margin-top: 0;
   background: var(--codewindow-tab-bg, #cbd5e1);
-  opacity: 0.6;
+  opacity: var(--codewindow-tab-inactive-opacity, 0.6);
 }
 
 .codewindow .header .tabs .file.active {
