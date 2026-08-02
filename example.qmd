@@ -183,6 +183,132 @@ model.inp
 :::
 :::
 
+## File icons
+
+::: columns
+::: {.column width="50%"}
+
+::: {.codewindow .sql}
+query.sql
+```{sass}
+```
+:::
+
+::: {.codewindow .markdown}
+README.md
+```{sass}
+```
+:::
+
+::: {.codewindow .yaml}
+_quarto.yml
+```{sass}
+```
+:::
+
+:::
+
+::: {.column width="50%"}
+
+::: {.codewindow .json}
+data.json
+```{sass}
+```
+:::
+
+::: {.codewindow .git}
+.gitignore
+```{sass}
+```
+:::
+
+::: {.codewindow .bash}
+deploy.bash
+```{sass}
+```
+:::
+
+:::
+:::
+
+## File icons
+
+::: columns
+::: {.column width="50%"}
+
+::: {.codewindow .sas}
+analysis.sas
+```{sass}
+```
+:::
+
+::: {.codewindow .spss}
+survey.sps
+```{sass}
+```
+:::
+
+::: {.codewindow .stata}
+regress.do
+```{sass}
+```
+:::
+
+:::
+
+::: {.column width="50%"}
+
+::: {.codewindow .matlab}
+solve.m
+```{sass}
+```
+:::
+
+::: {.codewindow .cpp}
+kernel.cpp
+```{sass}
+```
+:::
+
+::: {.codewindow .fortran}
+solver.f90
+```{sass}
+```
+:::
+
+:::
+:::
+
+## File icons
+
+::: columns
+::: {.column width="50%"}
+
+::: {.codewindow .typescript}
+app.ts
+```{sass}
+```
+:::
+
+::: {.codewindow .rust}
+main.rs
+```{sass}
+```
+:::
+
+:::
+
+::: {.column width="50%"}
+
+::: {.codewindow .go}
+server.go
+```{sass}
+```
+:::
+
+:::
+:::
+
 ## Setting width
 
 The `width` argument is natively supported, so the width can be set like so:

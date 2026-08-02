@@ -9,6 +9,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 ### Added
 
 - `stan` and `mplus` file icons (#11).
+- 15 new file icons: `sql`, `markdown`, `yaml`, `json`, `git` and `bash` for common formats and tooling; `sas`, `spss`, `stata`, `matlab`, `cpp` and `fortran` for statistical and scientific languages; and `typescript`, `rust` and `go`.
+- Class aliases for existing icons, so the obvious spelling works: `scss`, `md`, `yml`, `qmd`, `jl`, `f90`, `ts`, `javascript`, `golang`, and `sh`/`zsh`/`shell`/`console` for `terminal`.
 
 ## 1.5.0
 
