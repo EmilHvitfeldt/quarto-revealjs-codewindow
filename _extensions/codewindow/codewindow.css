@@ -1,18 +1,22 @@
 /* TODO: CSS for plugin */
 
+/* Colors are read from custom properties so decks can restyle the window
+   without overriding these rules. Set them on `:root`, `.reveal`, a single
+   `.codewindow`, or via the `bg=`/`header-bg=` code fence attributes. */
 .codewindow {
   overflow-wrap: anywhere;
   margin-bottom: 36px;
   font-size: 0.45em;
   font-family: monospace;
-  background: white;
+  color: var(--codewindow-color, inherit);
+  background: var(--codewindow-bg, white);
   border-radius: 10px;
-  box-shadow: #26394d 0px 20px 30px -10px;
+  box-shadow: var(--codewindow-shadow-color, #26394d) 0px 20px 30px -10px;
 }
- 
+
 .codewindow .header {
   display: flex;
-  background: #e2e8f0;
+  background: var(--codewindow-header-bg, #e2e8f0);
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   padding-left: 16px;
@@ -25,7 +29,7 @@
   padding-left: 20px;
   padding-right: 20px;
   display: flex;
-  background: white;
+  background: var(--codewindow-tab-active-bg, var(--codewindow-bg, white));
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   height: 90%;
@@ -58,12 +62,12 @@
 
 .codewindow .header .tabs .file {
   margin-top: 0;
-  background: #cbd5e1;
+  background: var(--codewindow-tab-bg, #cbd5e1);
   opacity: 0.6;
 }
 
 .codewindow .header .tabs .file.active {
-  background: white;
+  background: var(--codewindow-tab-active-bg, var(--codewindow-bg, white));
   opacity: 1;
 }
 
