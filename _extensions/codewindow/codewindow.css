@@ -51,6 +51,15 @@
   font-size: unset;
 }
 
+/* `code-line-numbers` steps are rendered as clones of the code block, stacked
+   on top of the first one, and Quarto relies on the code background to hide
+   the block underneath. The rule above makes that background transparent, so
+   the earlier step showed through and its lines never dimmed. Paint the
+   stacked clones with the window background to mask it again. */
+.codewindow .textarea pre > code:not(:first-child).fragment {
+  background: var(--codewindow-bg, white);
+}
+
 /* Multiple tabs */
 
 .codewindow .header .tabs {
