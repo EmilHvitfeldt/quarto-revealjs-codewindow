@@ -98,6 +98,12 @@ script.R
 ```
 :::
 
+::: {.codewindow .rmd}
+report.Rmd
+```{sass}
+```
+:::
+
 ::: {.codewindow .python}
 script.py
 ```{sass}
