@@ -133,6 +133,16 @@ const initCodewindow = function(Reveal) {
     golang: svg_go
   };
 
+  // Code fence attributes that map onto the styling custom properties.
+  const color_attributes = [
+    { name: "bg", prop: "--codewindow-bg" },
+    { name: "header-bg", prop: "--codewindow-header-bg" },
+    { name: "tab-bg", prop: "--codewindow-tab-bg" },
+    { name: "tab-active-bg", prop: "--codewindow-tab-active-bg" },
+    { name: "color", prop: "--codewindow-color" },
+    { name: "shadow-color", prop: "--codewindow-shadow-color" }
+  ];
+
   // Counter behind the `__CWID__` placeholder, which keeps ids referenced from
   // within an icon (clip paths and the like) unique across the deck.
   var iconUid = 0;
@@ -287,6 +297,19 @@ const initCodewindow = function(Reveal) {
       if (content.attributes.width !== undefined) {
         content.style.width = content.attributes.width.value;
       }
+
+      // Per-window color overrides, set as custom properties on the element so
+      // the CSS defaults (and any deck-wide values) still apply to the rest.
+      color_attributes.forEach(function(attr) {
+        // Pandoc turns non-HTML fence attributes into `data-*`, so check both.
+        var value = content.getAttribute(attr.name);
+        if (value === null) {
+          value = content.getAttribute("data-" + attr.name);
+        }
+        if (value !== null) {
+          content.style.setProperty(attr.prop, value);
+        }
+      });
     }
 
     // Fragment-driven tab switching for multi-tab windows.

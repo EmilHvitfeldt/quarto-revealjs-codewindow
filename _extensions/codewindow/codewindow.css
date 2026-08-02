@@ -1,18 +1,22 @@
 /* TODO: CSS for plugin */
 
+/* Colors are read from custom properties so decks can restyle the window
+   without overriding these rules. Set them on `:root`, `.reveal`, a single
+   `.codewindow`, or via the `bg=`/`header-bg=` code fence attributes. */
 .codewindow {
   overflow-wrap: anywhere;
   margin-bottom: 36px;
   font-size: 0.45em;
   font-family: monospace;
-  background: white;
+  color: var(--codewindow-color, inherit);
+  background: var(--codewindow-bg, white);
   border-radius: 10px;
-  box-shadow: #26394d 0px 20px 30px -10px;
+  box-shadow: var(--codewindow-shadow-color, #26394d) 0px 20px 30px -10px;
 }
- 
+
 .codewindow .header {
   display: flex;
-  background: #e2e8f0;
+  background: var(--codewindow-header-bg, #e2e8f0);
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   padding-left: 16px;
@@ -25,7 +29,7 @@
   padding-left: 20px;
   padding-right: 20px;
   display: flex;
-  background: white;
+  background: var(--codewindow-tab-active-bg, var(--codewindow-bg, white));
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   height: 90%;
@@ -58,12 +62,12 @@
 
 .codewindow .header .tabs .file {
   margin-top: 0;
-  background: #cbd5e1;
+  background: var(--codewindow-tab-bg, #cbd5e1);
   opacity: 0.6;
 }
 
 .codewindow .header .tabs .file.active {
-  background: white;
+  background: var(--codewindow-tab-active-bg, var(--codewindow-bg, white));
   opacity: 1;
 }
 
@@ -74,6 +78,57 @@
 .codewindow .textarea .pane.active {
   display: block;
 }
+
+/* Preset for dark decks */
+
+.codewindow.codewindow-dark {
+  --codewindow-bg: #1e293b;
+  --codewindow-header-bg: #0f172a;
+  --codewindow-tab-bg: #334155;
+  --codewindow-color: #e2e8f0;
+  --codewindow-shadow-color: #020617;
+}
+
+/* Quarto's syntax highlighting is picked deck-wide by `highlight-style`, which
+   a single dark window cannot change, so the token colors are remapped here.
+   Grouped after pandoc's token classes. */
+.codewindow.codewindow-dark code,
+.codewindow.codewindow-dark code span {
+  color: var(--codewindow-color);
+}
+
+.codewindow.codewindow-dark code span.kw,
+.codewindow.codewindow-dark code span.cf,
+.codewindow.codewindow-dark code span.im { color: #c792ea; }
+
+.codewindow.codewindow-dark code span.st,
+.codewindow.codewindow-dark code span.ch,
+.codewindow.codewindow-dark code span.vs,
+.codewindow.codewindow-dark code span.ss { color: #c3e88d; }
+
+.codewindow.codewindow-dark code span.dv,
+.codewindow.codewindow-dark code span.bn,
+.codewindow.codewindow-dark code span.fl,
+.codewindow.codewindow-dark code span.cn,
+.codewindow.codewindow-dark code span.sc { color: #f78c6c; }
+
+.codewindow.codewindow-dark code span.co,
+.codewindow.codewindow-dark code span.do { color: #7f8ea3; }
+
+.codewindow.codewindow-dark code span.fu,
+.codewindow.codewindow-dark code span.bu { color: #82aaff; }
+
+.codewindow.codewindow-dark code span.dt,
+.codewindow.codewindow-dark code span.at,
+.codewindow.codewindow-dark code span.va { color: #ffcb6b; }
+
+.codewindow.codewindow-dark code span.op,
+.codewindow.codewindow-dark code span.ot,
+.codewindow.codewindow-dark code span.pp { color: #89ddff; }
+
+.codewindow.codewindow-dark code span.al,
+.codewindow.codewindow-dark code span.er,
+.codewindow.codewindow-dark code span.wa { color: #ff5370; }
 
 .codewindow .cw-fragment-trigger {
   position: absolute;
