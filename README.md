@@ -119,6 +119,35 @@ Each argument is backed by a CSS custom property, so all windows in a deck can b
 }
 `````
 
+The window geometry is exposed the same way:
+
+- `--codewindow-radius`: the window corner radius (`10px`)
+- `--codewindow-header-height`: the height of the header bar (`30px`)
+- `--codewindow-header-pad`: the gap between the window edge and its contents (`16px`)
+- `--codewindow-tab-radius`: the corner radius of a file tab (`10px 10px 0 0`)
+- `--codewindow-tab-gap`: the space between file tabs (`8px`)
+- `--codewindow-tab-padding`: the horizontal padding inside a file tab (`20px`)
+- `--codewindow-tab-inactive-opacity`: how far back inactive tabs sit (`0.6`)
+
+## Window chrome
+
+The window buttons are set with the `chrome` argument:
+
+- `mac` (the default): the three round buttons on the left
+- `windows`: minimize, maximize and close on the right
+- `none`: no buttons, so the file tabs start at the window edge
+
+````` markdown
+::: {.codewindow .sass chrome="windows"}
+styles.scss
+```{{scss}}
+.pink {
+  color: pink;
+}
+```
+:::
+`````
+
 ## Multiple tabs
 
 A single `codewindow` can show several file tabs. Wrap one or more `.editor` divs inside the `.codewindow` div, one per tab. Each `.editor` takes the same language classes for its icon and either a `name="..."` attribute or leading plain text for its filename.

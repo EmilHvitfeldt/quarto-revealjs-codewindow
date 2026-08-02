@@ -391,6 +391,34 @@ To restyle every window in the deck, set the same custom properties in your own 
 }
 `````
 
+## Window chrome
+
+The `chrome` argument picks the window buttons: `mac` (the default), `windows` or `none`.
+
+::: columns
+::: {.column width="50%"}
+
+::: {.codewindow .r chrome="windows"}
+script.R
+```{r}
+runif(1)
+```
+:::
+
+:::
+
+::: {.column width="50%"}
+
+::: {.codewindow .r chrome="none"}
+script.R
+```{r}
+runif(1)
+```
+:::
+
+:::
+:::
+
 ## Multiple blocks in one window
 
 A codewindow can hold more than one code block (and text between them); nothing gets dropped. So
