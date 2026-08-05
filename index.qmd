@@ -98,6 +98,12 @@ script.R
 ```
 :::
 
+::: {.codewindow .rmd}
+report.Rmd
+```{sass}
+```
+:::
+
 ::: {.codewindow .python}
 script.py
 ```{sass}
@@ -112,12 +118,6 @@ script.js
 
 ::: {.codewindow .julia}
 script.jl
-```{sass}
-```
-:::
-
-::: {.codewindow .terminal}
-script.sh
 ```{sass}
 ```
 :::
@@ -150,8 +150,164 @@ styles.sass
 ```
 :::
 
+:::
+:::
+
+## File icons
+
+::: columns
+::: {.column width="50%"}
+
+::: {.codewindow .terminal}
+script.sh
+```{sass}
+```
+:::
+
 ::: {.codewindow .nextflow}
 main.nf
+```{sass}
+```
+:::
+
+:::
+
+::: {.column width="50%"}
+
+::: {.codewindow .stan}
+model.stan
+```{sass}
+```
+:::
+
+::: {.codewindow .mplus}
+model.inp
+```{sass}
+```
+:::
+
+:::
+:::
+
+## File icons
+
+::: columns
+::: {.column width="50%"}
+
+::: {.codewindow .sql}
+query.sql
+```{sass}
+```
+:::
+
+::: {.codewindow .markdown}
+README.md
+```{sass}
+```
+:::
+
+::: {.codewindow .yaml}
+_quarto.yml
+```{sass}
+```
+:::
+
+:::
+
+::: {.column width="50%"}
+
+::: {.codewindow .json}
+data.json
+```{sass}
+```
+:::
+
+::: {.codewindow .git}
+.gitignore
+```{sass}
+```
+:::
+
+::: {.codewindow .bash}
+deploy.bash
+```{sass}
+```
+:::
+
+:::
+:::
+
+## File icons
+
+::: columns
+::: {.column width="50%"}
+
+::: {.codewindow .sas}
+analysis.sas
+```{sass}
+```
+:::
+
+::: {.codewindow .spss}
+survey.sps
+```{sass}
+```
+:::
+
+::: {.codewindow .stata}
+regress.do
+```{sass}
+```
+:::
+
+:::
+
+::: {.column width="50%"}
+
+::: {.codewindow .matlab}
+solve.m
+```{sass}
+```
+:::
+
+::: {.codewindow .cpp}
+kernel.cpp
+```{sass}
+```
+:::
+
+::: {.codewindow .fortran}
+solver.f90
+```{sass}
+```
+:::
+
+:::
+:::
+
+## File icons
+
+::: columns
+::: {.column width="50%"}
+
+::: {.codewindow .typescript}
+app.ts
+```{sass}
+```
+:::
+
+::: {.codewindow .rust}
+main.rs
+```{sass}
+```
+:::
+
+:::
+
+::: {.column width="50%"}
+
+::: {.codewindow .go}
+server.go
 ```{sass}
 ```
 :::
@@ -184,6 +340,186 @@ styles.scss
 }
 ```
 :::
+
+## Setting colors
+
+The colors of a single window can be set with the `bg`, `header-bg`, `tab-bg`, `tab-active-bg`, `color` and `shadow-color` arguments:
+
+````` markdown
+::: {.codewindow .sass bg="#fdf6e3" header-bg="#eee8d5" shadow-color="#93a1a1"}
+styles.scss
+```{{scss}}
+.pink {
+  color: pink;
+}
+```
+:::
+`````
+
+becomes
+
+::: {.codewindow .sass bg="#fdf6e3" header-bg="#eee8d5" shadow-color="#93a1a1"}
+styles.scss
+```{scss}
+.pink {
+  color: pink;
+}
+```
+:::
+
+## Dark windows
+
+The `.codewindow-dark` class is a preset for dark decks:
+
+::: {.codewindow .sass .codewindow-dark}
+styles.scss
+```{scss}
+.pink {
+  color: pink;
+}
+```
+:::
+
+To restyle every window in the deck, set the same custom properties in your own stylesheet:
+
+````` css
+.reveal {
+  --codewindow-bg: #1e293b;
+  --codewindow-header-bg: #0f172a;
+  --codewindow-tab-bg: #334155;
+  --codewindow-color: #e2e8f0;
+}
+`````
+
+## Window chrome
+
+The `chrome` argument picks the window buttons: `mac` (the default), `windows` or `none`.
+
+::: columns
+::: {.column width="50%"}
+
+::: {.codewindow .r chrome="windows"}
+script.R
+```{r}
+runif(1)
+```
+:::
+
+:::
+
+::: {.column width="50%"}
+
+::: {.codewindow .r chrome="none"}
+script.R
+```{r}
+runif(1)
+```
+:::
+
+:::
+:::
+
+## Multiple blocks in one window
+
+A codewindow can hold more than one code block (and text between them); nothing gets dropped. So
+
+````` markdown
+::: {.codewindow .r}
+my-script.R
+```{{r}}
+runif(1)
+```
+
+Then some more code:
+
+```{{r}}
+runif(42)
+```
+:::
+`````
+
+## Multiple blocks in one window
+
+becomes
+
+::: {.codewindow .r}
+my-script.R
+```{r}
+runif(1)
+```
+
+Then some more code:
+
+```{r}
+runif(42)
+```
+:::
+
+## Multiple tabs
+
+Wrap several `.editor` divs in a `.codewindow` to get one file tab per editor. Add `.active` to pick which starts open (the first otherwise), and `.fragment` to focus the next tab as the slide advances.
+
+````` markdown
+:::: {.codewindow}
+::: {.editor .r name="Final (updated) - USE THIS ONE - .R"}
+```r
+data <- read.csv("my-data.csv")
+```
+:::
+
+::: {.editor .r .fragment name="01-clean.R"}
+```r
+library(dplyr)
+data <- filter(data, x > 0)
+```
+:::
+::::
+`````
+
+## Only the best names
+
+:::: {.codewindow}
+::: {.editor .r name="00-load.R"}
+
+```r
+data <- read.csv("my-data.csv")
+```
+:::
+
+::: {.editor .r .fragment name="01-clean.R"}
+```r
+library(dplyr)
+data <- filter(data, x > 0)
+```
+:::
+::::
+
+## Multiple tabs
+
+becomes (advance the slide to switch tabs)
+
+:::: {.codewindow}
+::: {.editor .r name="00-load.R"}
+```r
+data <- read.csv("my-data.csv")
+```
+:::
+
+::: {.editor .r .fragment name="01-clean.R"}
+```r
+library(dplyr)
+data <- filter(data, x > 0)
+```
+:::
+
+::: {.editor .r .fragment name="02-plot.R"}
+```r
+library(ggplot2)
+ggplot(data, aes(x, y)) +
+  geom_point()
+```
+:::
+::::
 
 ## Additional notes
 

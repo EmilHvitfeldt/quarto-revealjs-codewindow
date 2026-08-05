@@ -1,33 +1,57 @@
 /* TODO: CSS for plugin */
 
+/* Colors and geometry are read from custom properties so decks can restyle the
+   window without overriding these rules. Set them on `:root`, `.reveal`, a
+   single `.codewindow`, or via the `bg=`/`header-bg=` code fence attributes. */
 .codewindow {
   overflow-wrap: anywhere;
   margin-bottom: 36px;
   font-size: 0.45em;
   font-family: monospace;
-  background: white;
-  border-radius: 10px;
-  box-shadow: #26394d 0px 20px 30px -10px;
+  color: var(--codewindow-color, inherit);
+  background: var(--codewindow-bg, white);
+  border-radius: var(--codewindow-radius, 10px);
+  box-shadow: var(--codewindow-shadow-color, #26394d) 0px 20px 30px -10px;
 }
- 
+
 .codewindow .header {
   display: flex;
-  background: #e2e8f0;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  padding-left: 16px;
+  background: var(--codewindow-header-bg, #e2e8f0);
+  border-top-left-radius: var(--codewindow-radius, 10px);
+  border-top-right-radius: var(--codewindow-radius, 10px);
+  padding-left: var(--codewindow-header-pad, 16px);
   gap: 16px;
-  height: 30px;
+  height: var(--codewindow-header-height, 30px);
+}
+
+/* Window buttons. Which set is drawn comes from the `chrome=` fence argument,
+   which the plugin mirrors onto `data-chrome` for the rules below. */
+.codewindow .header .buttons {
+  display: flex;
+  align-items: center;
+  flex: none;
+}
+
+.codewindow[data-chrome="windows"] .header {
+  padding-right: var(--codewindow-header-pad, 16px);
+}
+
+.codewindow[data-chrome="windows"] .header .buttons {
+  order: 2;
+  margin-left: auto;
+}
+
+.codewindow[data-chrome="none"] .header .buttons {
+  display: none;
 }
 
 .codewindow .header .file {
   margin-top: 5px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: var(--codewindow-tab-padding, 20px);
+  padding-right: var(--codewindow-tab-padding, 20px);
   display: flex;
-  background: white;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  background: var(--codewindow-tab-active-bg, var(--codewindow-bg, white));
+  border-radius: var(--codewindow-tab-radius, 10px 10px 0 0);
   height: 90%;
   align-items: center;
   gap: 4px;
@@ -45,4 +69,101 @@
 
 .codewindow .textarea pre {
   font-size: unset;
+}
+
+/* `code-line-numbers` steps are rendered as clones of the code block, stacked
+   on top of the first one, and Quarto relies on the code background to hide
+   the block underneath. The rule above makes that background transparent, so
+   the earlier step showed through and its lines never dimmed. Paint the
+   stacked clones with the window background to mask it again. */
+.codewindow .textarea pre > code:not(:first-child).fragment {
+  background: var(--codewindow-bg, white);
+}
+
+/* Multiple tabs */
+
+.codewindow .header .tabs {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--codewindow-tab-gap, 8px);
+  height: 100%;
+}
+
+.codewindow .header .tabs .file {
+  margin-top: 0;
+  background: var(--codewindow-tab-bg, #cbd5e1);
+  opacity: var(--codewindow-tab-inactive-opacity, 0.6);
+}
+
+.codewindow .header .tabs .file.active {
+  background: var(--codewindow-tab-active-bg, var(--codewindow-bg, white));
+  opacity: 1;
+}
+
+.codewindow .textarea .pane {
+  display: none;
+}
+
+.codewindow .textarea .pane.active {
+  display: block;
+}
+
+/* Preset for dark decks */
+
+.codewindow.codewindow-dark {
+  --codewindow-bg: #1e293b;
+  --codewindow-header-bg: #0f172a;
+  --codewindow-tab-bg: #334155;
+  --codewindow-color: #e2e8f0;
+  --codewindow-shadow-color: #020617;
+}
+
+/* Quarto's syntax highlighting is picked deck-wide by `highlight-style`, which
+   a single dark window cannot change, so the token colors are remapped here.
+   Grouped after pandoc's token classes. */
+.codewindow.codewindow-dark code,
+.codewindow.codewindow-dark code span {
+  color: var(--codewindow-color);
+}
+
+.codewindow.codewindow-dark code span.kw,
+.codewindow.codewindow-dark code span.cf,
+.codewindow.codewindow-dark code span.im { color: #c792ea; }
+
+.codewindow.codewindow-dark code span.st,
+.codewindow.codewindow-dark code span.ch,
+.codewindow.codewindow-dark code span.vs,
+.codewindow.codewindow-dark code span.ss { color: #c3e88d; }
+
+.codewindow.codewindow-dark code span.dv,
+.codewindow.codewindow-dark code span.bn,
+.codewindow.codewindow-dark code span.fl,
+.codewindow.codewindow-dark code span.cn,
+.codewindow.codewindow-dark code span.sc { color: #f78c6c; }
+
+.codewindow.codewindow-dark code span.co,
+.codewindow.codewindow-dark code span.do { color: #7f8ea3; }
+
+.codewindow.codewindow-dark code span.fu,
+.codewindow.codewindow-dark code span.bu { color: #82aaff; }
+
+.codewindow.codewindow-dark code span.dt,
+.codewindow.codewindow-dark code span.at,
+.codewindow.codewindow-dark code span.va { color: #ffcb6b; }
+
+.codewindow.codewindow-dark code span.op,
+.codewindow.codewindow-dark code span.ot,
+.codewindow.codewindow-dark code span.pp { color: #89ddff; }
+
+.codewindow.codewindow-dark code span.al,
+.codewindow.codewindow-dark code span.er,
+.codewindow.codewindow-dark code span.wa { color: #ff5370; }
+
+.codewindow .cw-fragment-trigger {
+  position: absolute;
+  width: 0;
+  height: 0;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
 }
