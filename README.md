@@ -1,6 +1,6 @@
 # codewindow Extension For Quarto
 
-Add styled codeblock windows for code.
+Add styled codeblock windows for code, in `revealjs` presentations and in regular `html` documents.
 
 ![](example.gif)
 
@@ -23,6 +23,19 @@ revealjs-plugins:
   - codewindow
 ---
 `````
+
+For a regular HTML document, add it to the `filters` key instead:
+
+````` markdown
+---
+title: "My Document"
+format: html
+filters:
+  - codewindow
+---
+`````
+
+Everything below works the same in both, with one exception: `.fragment` on an `.editor` advances the tabs in a presentation, while in an HTML document the tabs are clickable instead. See [Multiple tabs](#multiple-tabs).
 
 ## Using
 
@@ -153,7 +166,8 @@ styles.scss
 A single `codewindow` can show several file tabs. Wrap one or more `.editor` divs inside the `.codewindow` div, one per tab. Each `.editor` takes the same language classes for its icon and either a `name="..."` attribute or leading plain text for its filename.
 
 - The first tab is shown by default. Add `.active` to a different `.editor` to start on that one instead.
-- Add `.fragment` to an `.editor` to focus its tab as the slide advances (and step back when reversing).
+- In a `revealjs` presentation, add `.fragment` to an `.editor` to focus its tab as the slide advances (and step back when reversing).
+- In an `html` document there are no slide advances, so the tabs are clickable (and keyboard reachable) instead. Any `.fragment` class is ignored.
 
 ````` markdown
 :::: {.codewindow}
@@ -174,5 +188,5 @@ data <- filter(data, x > 0)
 
 ## Example
 
-Here is the source code for a minimal example: [example.qmd](example.qmd).
+Here is the source code for a minimal example: [example.qmd](example.qmd) for `revealjs`, and [example-html.qmd](example-html.qmd) for `html`.
 

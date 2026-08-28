@@ -1,15 +1,9 @@
-window.RevealCodewindow = function () {
-  return {
-    id: "RevealCodewindow",
-    init: function(deck) {
-      initCodewindow(deck);
-    }
-  };
-};
+// Shared by revealjs and plain `format: html`. The two entry points live at the
+// bottom of this file: revealjs loads this as a plugin and drives tab switching
+// from slide fragments, while HTML loads it as a script dependency and makes the
+// tabs clickable instead.
+(function () {
 
-
-const initCodewindow = function(Reveal) {
-  
   // Window buttons, picked with the `chrome=` code fence argument. The Windows
   // set is stroked in `currentColor` so it follows the window text color.
   const chromes = {
@@ -225,7 +219,10 @@ const initCodewindow = function(Reveal) {
     panes.forEach(function(p, i) { p.classList.toggle("active", i === idx); });
   };
 
-  window.addEventListener( 'ready', function(event) {
+  // Rewrite every `.codewindow` into header + tabs + panes. `reveal` selects how
+  // multi-tab windows are driven: slide fragments when true, tab clicks when
+  // false. Returns whether any fragment triggers were injected.
+  const buildCodewindows = function(reveal) {
 
     var needsSync = false;
     var codewindows = document.getElementsByClassName("codewindow");
@@ -278,6 +275,27 @@ const initCodewindow = function(Reveal) {
           if (idx === activeIndex) {
             tab.classList.add("active");
           }
+          // Outside reveal there are no slide advances to drive the tabs, so
+          // they become buttons. `closest` resolves the window at click time
+          // rather than closing over the loop variable.
+          if (!reveal) {
+            tab.classList.add("clickable");
+            tab.setAttribute("role", "button");
+            tab.setAttribute("tabindex", "0");
+            var select = function(e) {
+              var win = e.currentTarget.closest(".codewindow");
+              if (win) {
+                activate(win, idx);
+              }
+            };
+            tab.addEventListener("click", select);
+            tab.addEventListener("keydown", function(e) {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                select(e);
+              }
+            });
+          }
           tabs.appendChild(tab);
 
           var pane = document.createElement("div");
@@ -289,7 +307,7 @@ const initCodewindow = function(Reveal) {
           textarea.appendChild(pane);
 
           // A `.fragment` editor becomes a step that is focused on advance.
-          if (ed.classList.contains("fragment")) {
+          if (reveal && ed.classList.contains("fragment")) {
             triggers.push({ target: idx, prev: prev });
             prev = idx;
           }
@@ -337,7 +355,11 @@ const initCodewindow = function(Reveal) {
       });
     }
 
-    // Fragment-driven tab switching for multi-tab windows.
+    return needsSync;
+  };
+
+  // Fragment-driven tab switching for multi-tab windows. Reveal only.
+  const bindRevealFragments = function(Reveal, needsSync) {
     Reveal.on('fragmentshown', function(e) {
       var el = e.fragment;
       if (el && el.classList && el.classList.contains("cw-fragment-trigger")) {
@@ -360,5 +382,33 @@ const initCodewindow = function(Reveal) {
     if (needsSync && typeof Reveal.sync === "function") {
       Reveal.sync();
     }
-  });
-};
+  };
+
+  // Entry point 1: revealjs, via the `RevealCodewindow` plugin.
+  window.RevealCodewindow = function () {
+    return {
+      id: "RevealCodewindow",
+      init: function(deck) {
+        window.addEventListener('ready', function(event) {
+          bindRevealFragments(deck, buildCodewindows(true));
+        });
+      }
+    };
+  };
+
+  // Entry point 2: plain `format: html`, via the Lua filter's script
+  // dependency. A revealjs deck loads this same file, so bail out when the
+  // reveal container is present and let the plugin above handle the document.
+  const bootstrapHtml = function() {
+    if (document.querySelector(".reveal")) {
+      return;
+    }
+    buildCodewindows(false);
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", bootstrapHtml);
+  } else {
+    bootstrapHtml();
+  }
+})();

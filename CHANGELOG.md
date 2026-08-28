@@ -4,6 +4,17 @@ All notable changes to the codewindow extension are documented here.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 1.7.0
+
+### Added
+
+- Support for regular `html` documents, not just `revealjs` presentations. Add `codewindow` to the `filters` key to use it in an HTML document; presentations keep using the `revealjs-plugins` key as before. All existing features (icons, file names, `width`, the color arguments, `chrome` and the `.codewindow-dark` preset) work in both.
+- Clickable file tabs. Multi-tab windows in an HTML document have no slide advances to drive them, so the tabs respond to clicks and to Enter/Space when focused. Presentations are unchanged and still advance tabs with `.fragment`.
+
+### Changed
+
+- The window font size is now only reduced inside a presentation, where it is tuned to reveal's large base font. HTML documents inherit their own code sizing instead.
+
 ## 1.6.0
 
 ### Added

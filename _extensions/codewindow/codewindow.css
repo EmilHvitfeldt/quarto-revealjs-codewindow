@@ -1,17 +1,23 @@
 /* TODO: CSS for plugin */
 
-/* Colors and geometry are read from custom properties so decks can restyle the
-   window without overriding these rules. Set them on `:root`, `.reveal`, a
-   single `.codewindow`, or via the `bg=`/`header-bg=` code fence attributes. */
+/* Colors and geometry are read from custom properties so documents can restyle
+   the window without overriding these rules. Set them on `:root`, `.reveal` (or
+   `body` outside a deck), a single `.codewindow`, or via the `bg=`/`header-bg=`
+   code fence attributes. */
 .codewindow {
   overflow-wrap: anywhere;
   margin-bottom: 36px;
-  font-size: 0.45em;
   font-family: monospace;
   color: var(--codewindow-color, inherit);
   background: var(--codewindow-bg, white);
   border-radius: var(--codewindow-radius, 10px);
   box-shadow: var(--codewindow-shadow-color, #26394d) 0px 20px 30px -10px;
+}
+
+/* Tuned to reveal's large base font size; outside a deck the document's own
+   code sizing already applies. */
+.reveal .codewindow {
+  font-size: 0.45em;
 }
 
 .codewindow .header {
@@ -93,6 +99,11 @@
   margin-top: 0;
   background: var(--codewindow-tab-bg, #cbd5e1);
   opacity: var(--codewindow-tab-inactive-opacity, 0.6);
+}
+
+/* Outside reveal the tabs are buttons rather than fragment-driven. */
+.codewindow .header .tabs .file.clickable {
+  cursor: pointer;
 }
 
 .codewindow .header .tabs .file.active {

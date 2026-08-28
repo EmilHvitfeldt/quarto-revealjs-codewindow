@@ -1,0 +1,125 @@
+---
+title: "codewindow HTML Example"
+format: html
+filters:
+  - codewindow
+---
+
+The same `.codewindow` syntax works in plain HTML documents. Add the filter rather than the reveal plugin:
+
+``` yaml
+filters:
+  - codewindow
+```
+
+## Basic usage
+
+::: {.codewindow}
+```scss
+.pink {
+  color: pink;
+}
+```
+:::
+
+## File name and icon
+
+::: {.codewindow .sass}
+styles.scss
+```scss
+.pink {
+  color: pink;
+}
+```
+:::
+
+## Setting width
+
+::: {.codewindow .sass width="350px"}
+styles.scss
+```scss
+.pink {
+  color: pink;
+}
+```
+:::
+
+## Setting colors
+
+::: {.codewindow .sass bg="#fdf6e3" header-bg="#eee8d5" shadow-color="#93a1a1"}
+styles.scss
+```scss
+.pink {
+  color: pink;
+}
+```
+:::
+
+## Window chrome
+
+::: {.codewindow .r chrome="windows"}
+script.R
+```r
+runif(1)
+```
+:::
+
+::: {.codewindow .r chrome="none"}
+script.R
+```r
+runif(1)
+```
+:::
+
+## Dark windows
+
+::: {.codewindow .sass .codewindow-dark}
+styles.scss
+```scss
+.pink {
+  color: pink;
+}
+```
+:::
+
+## Multiple blocks in one window
+
+::: {.codewindow .r}
+my-script.R
+```r
+runif(1)
+```
+
+Then some more code:
+
+```r
+runif(42)
+```
+:::
+
+## Multiple tabs
+
+Outside a slide deck there are no fragments to advance, so the tabs are clickable instead. Any `.fragment` class on an `.editor` is ignored.
+
+:::: {.codewindow}
+::: {.editor .r name="00-load.R"}
+```r
+data <- read.csv("my-data.csv")
+```
+:::
+
+::: {.editor .r .active name="01-clean.R"}
+```r
+library(dplyr)
+data <- filter(data, x > 0)
+```
+:::
+
+::: {.editor .r name="02-plot.R"}
+```r
+library(ggplot2)
+ggplot(data, aes(x, y)) +
+  geom_point()
+```
+:::
+::::
